@@ -1,0 +1,143 @@
+{
+	"info": {
+		"_postman_id": "f7776895-b590-42cb-bc0d-6e7a8bfaf0cc",
+		"name": "Laravel-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29831214"
+	},
+	"item": [
+		{
+			"name": "GetBooks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/book",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBookById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/book/12",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"book",
+						"12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateBook",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"anjast1213\",\r\n    \"author\": \"anjassss1312412\",\r\n    \"published_date\": \"2000-03-21\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/book",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateBookById",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Molestiae accusamus amet vel odit officiis.1312414\",\r\n    \"author\": \"Dr. Leopold Morissette13124124\",\r\n    \"published_date\": \"1973-06-03\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/book/12",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"book",
+						"12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteBookById",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/book/12",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"book",
+						"12"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "server",
+			"value": "http://localhost:8000/api",
+			"type": "string"
+		}
+	]
+}
