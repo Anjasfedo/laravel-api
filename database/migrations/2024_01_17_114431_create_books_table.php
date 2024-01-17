@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Create the 'books' table with specified columns
         Schema::create('books', function (Blueprint $table) {
-            $table->id();
-            $table->string("title");
-            $table->string("author");
-            $table->date("published_date");
-            $table->timestamps();
+            $table->id(); // Auto-incremental primary key
+            $table->string("title"); // Title of the book (string)
+            $table->string("author"); // Author of the book (string)
+            $table->date("published_date"); // Published date of the book (date)
+            $table->timestamps(); // Created_at and updated_at timestamps
         });
     }
 
@@ -25,6 +26,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        // Drop the 'books' table if it exists
         Schema::dropIfExists('books');
     }
 };
