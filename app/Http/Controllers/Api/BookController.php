@@ -27,7 +27,20 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dataBook = new Book;
+
+        $dataBook->title = $request->title;
+
+        $dataBook->author = $request->author;
+
+        $dataBook->published_date = $request->published_date;
+
+        $post = $dataBook->save();
+
+        return response()->json([
+            "status" => true,
+            "message" => "Data Created"
+        ], 201);
     }
 
     /**
