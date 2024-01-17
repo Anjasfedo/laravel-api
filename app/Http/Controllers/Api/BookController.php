@@ -77,7 +77,7 @@ class BookController extends Controller
             return response()->json([
                 "status" => false,
                 "message" => "Data not Found"
-            ], 400);
+            ], 404);
         }
     }
 
@@ -86,7 +86,43 @@ class BookController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $dataBook = Book::find($id);
+
+        if (empty($dataBook)) {
+            return response()->json([
+                "status" => false,
+                "message" => "Data not Found"
+            ], 404);
+        }
+
+        $rules = [
+            "title" => "required",
+            "author" => "required",
+            "published_date" => "required|date|date_format:Y-m-d",
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return response()->json([
+                "status" => false,
+                "message" => "Failed Update Data",
+                "data" => $validator->errors()
+            ], 400);
+        }
+
+        $dataBook->title = $request->title;
+
+        $dataBook->author = $request->author;
+
+        $dataBook->published_date = $request->published_date;
+
+        $post = $dataBook->save();
+
+        return response()->json([
+            "status" => true,
+            "message" => "Data Updated"
+        ], 201);
     }
 
     /**
