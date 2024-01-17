@@ -52,7 +52,7 @@ class BookController extends Controller
 
         $dataBook->published_date = $request->published_date;
 
-        $post = $dataBook->save();
+        $dataBook->save();
 
         return response()->json([
             "status" => true,
@@ -117,7 +117,7 @@ class BookController extends Controller
 
         $dataBook->published_date = $request->published_date;
 
-        $post = $dataBook->save();
+        $dataBook->save();
 
         return response()->json([
             "status" => true,
@@ -130,6 +130,20 @@ class BookController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $dataBook = Book::find($id);
+
+        if (empty($dataBook)) {
+            return response()->json([
+                "status" => false,
+                "message" => "Data not Found"
+            ], 404);
+        }
+
+        $dataBook->delete();
+
+        return response()->json([
+            "status" => true,
+            "message" => "Data Deleted"
+        ], 200);
     }
 }
