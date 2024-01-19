@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BookController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -15,9 +16,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::post("register", [AuthController::class, "register"]);
+Route::post("login", [AuthController::class, "login"]);
+
+Route::group([
+    "prefix" => "",
+    "as" => "api.",
+    "middleware" => ["auth:sanctum"]
+], function () {
+    Route::apiResource("book", BookController::class);
 });
 
 // API Resource route for the BookController, providing standard CRUD endpoints
-Route::apiResource("book", BookController::class);
